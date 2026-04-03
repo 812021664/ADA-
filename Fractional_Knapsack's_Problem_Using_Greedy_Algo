@@ -1,55 +1,74 @@
-#include <iostream>
-#include <algorithm>
-using namespace std;
+import java.util.*;
 
-struct Item {
+class Item {
     int value, weight;
-};
 
-// Comparator for sorting by value/weight ratio
-bool cmp(Item a, Item b) {
-    double r1 = (double)a.value / a.weight;
-    double r2 = (double)b.value / b.weight;
-    return r1 > r2;
+    Item(int value, int weight) {
+        this.value = value;
+        this.weight = weight;
+    }
 }
 
-double fractionalKnapsack(int W, Item arr[], int n) {
-    sort(arr, arr + n, cmp);
+public class FractionalKnapsack {
 
-    double totalValue = 0.0;
+    static double fractionalKnapsack(int W, Item[] arr, int n) {
 
-    for (int i = 0; i < n; i++) {
-        if (W >= arr[i].weight) {
-            W -= arr[i].weight;
-            totalValue += arr[i].value;
-        } else {
-            totalValue += arr[i].value * ((double)W / arr[i].weight);
-            break;
+        // Sort by value/weight ratio (descending)
+        Arrays.sort(arr, (a, b) -> {
+            double r1 = (double) a.value / a.weight;
+            double r2 = (double) b.value / b.weight;
+            return Double.compare(r2, r1);
+        });
+
+        double totalValue = 0.0;
+
+        for (int i = 0; i < n; i++) {
+            if (W >= arr[i].weight) {
+                W -= arr[i].weight;
+                totalValue += arr[i].value;
+            } else {
+                totalValue += arr[i].value * ((double) W / arr[i].weight);
+                break;
+            }
         }
+
+        return totalValue;
     }
 
-    return totalValue;
-}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-int main() {
-    int n, W;
+        int n, W;
 
-    cout << "Enter number of items: ";
-    cin >> n;
+        // Restrict number of items < 4
+        do {
+            System.out.print("Enter number of items (<4): ");
+            n = sc.nextInt();
+        } while (n <= 0 || n >= 4);
 
-    Item arr[100]; // fixed size array (safe for exams)
+        Item[] arr = new Item[n];
 
-    cout << "Enter value and weight of each item:\n";
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i].value >> arr[i].weight;
+        System.out.println("Enter value and weight of each item:");
+        for (int i = 0; i < n; i++) {
+            int value = sc.nextInt();
+            int weight = sc.nextInt();
+
+            if (weight <= 0) {
+                System.out.println("Invalid weight! Re-enter:");
+                i--;
+                continue;
+            }
+
+            arr[i] = new Item(value, weight);
+        }
+
+        System.out.print("Enter capacity of knapsack: ");
+        W = sc.nextInt();
+
+        double result = fractionalKnapsack(W, arr, n);
+
+        System.out.println("Maximum value = " + result);
+
+        sc.close();
     }
-
-    cout << "Enter capacity of knapsack: ";
-    cin >> W;
-
-    double result = fractionalKnapsack(W, arr, n);
-
-    cout << "Maximum value in knapsack = " << result << endl;
-
-    return 0;
 }
