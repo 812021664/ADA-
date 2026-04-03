@@ -1,72 +1,84 @@
-#include <iostream>
-#include <climits>
-using namespace std;
+import java.util.Scanner;
 
-#define V 5  // number of vertices
+public class Dijkstra {
 
-// Find vertex with minimum distance
-int minDistance(int dist[], bool visited[]) {
-    int min = INT_MAX, min_index;
-
-    for (int v = 0; v < V; v++) {
-        if (!visited[v] && dist[v] <= min) {
-            min = dist[v];
-            min_index = v;
-        }
-    }
-    return min_index;
-}
-
-// Dijkstra Algorithm
-void dijkstra(int graph[V][V], int src) {
-    int dist[V];      // Output array
-    bool visited[V];  // Visited set
-
-    // Initialize
-    for (int i = 0; i < V; i++) {
-        dist[i] = INT_MAX;
-        visited[i] = false;
-    }
-
-    dist[src] = 0;
-
-    // Find shortest path for all vertices
-    for (int count = 0; count < V - 1; count++) {
-        int u = minDistance(dist, visited);
-        visited[u] = true;
+    static int minDistance(int[] dist, boolean[] visited, int V) {
+        int min = Integer.MAX_VALUE, min_index = -1;
 
         for (int v = 0; v < V; v++) {
-            if (!visited[v] && graph[u][v] &&
-                dist[u] != INT_MAX &&
-                dist[u] + graph[u][v] < dist[v]) {
-
-                dist[v] = dist[u] + graph[u][v];
+            if (!visited[v] && dist[v] <= min) {
+                min = dist[v];
+                min_index = v;
             }
         }
+        return min_index;
     }
 
-    // Print result
-    cout << "Vertex \t Distance from Source\n";
-    for (int i = 0; i < V; i++) {
-        cout << i << " \t " << dist[i] << endl;
-    }
-}
+    static void dijkstra(int[][] graph, int V, int src) {
+        int[] dist = new int[V];
+        boolean[] visited = new boolean[V];
 
-int main() {
-    int graph[V][V];
+        // Initialize
+        for (int i = 0; i < V; i++) {
+            dist[i] = Integer.MAX_VALUE;
+            visited[i] = false;
+        }
 
-    cout << "Enter adjacency matrix (5x5):\n";
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            cin >> graph[i][j];
+        dist[src] = 0;
+
+        // Main loop
+        for (int count = 0; count < V - 1; count++) {
+            int u = minDistance(dist, visited, V);
+
+            if (u == -1) break; // safety check
+
+            visited[u] = true;
+
+            for (int v = 0; v < V; v++) {
+                if (!visited[v] && graph[u][v] != 0 &&
+                        dist[u] != Integer.MAX_VALUE &&
+                        dist[u] + graph[u][v] < dist[v]) {
+
+                    dist[v] = dist[u] + graph[u][v];
+                }
+            }
+        }
+
+        // Print result
+        System.out.println("Vertex\tDistance");
+        for (int i = 0; i < V; i++) {
+            System.out.println(i + "\t" + dist[i]);
         }
     }
 
-    int src;
-    cout << "Enter source vertex (0-4): ";
-    cin >> src;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-    dijkstra(graph, src);
+        int V;
 
-    return 0;
+        // Restrict V < 4
+        do {
+            System.out.print("Enter number of vertices (<4): ");
+            V = sc.nextInt();
+        } while (V <= 0 || V >= 4);
+
+        int[][] graph = new int[V][V];
+
+        System.out.println("Enter adjacency matrix:");
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                graph[i][j] = sc.nextInt();
+            }
+        }
+
+        int src;
+        do {
+            System.out.print("Enter source vertex: ");
+            src = sc.nextInt();
+        } while (src < 0 || src >= V);
+
+        dijkstra(graph, V, src);
+
+        sc.close();
+    }
 }
