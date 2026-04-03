@@ -1,6 +1,6 @@
 # 📘 Data Structures & Algorithms Repository
 
-This repository contains implementations of fundamental **Data Structures and Algorithms (DSA)** concepts using Java and C++. It is designed for learning, practice, and placement preparation.
+This repository contains implementations of fundamental **Data Structures and Algorithms (DSA)** concepts using Java and C++. It is structured for **learning, revision, and placement preparation**.
 
 ---
 
@@ -9,29 +9,29 @@ This repository contains implementations of fundamental **Data Structures and Al
 ### 🔍 Searching Algorithms
 
 * **Linear Search**
-  Basic search technique to find an element in a list.
+  Basic technique to find elements sequentially.
 
 * **Binary Search**
-  Efficient searching algorithm for sorted arrays.
+  Efficient search algorithm for sorted arrays.
 
 ---
 
 ### 🔄 Sorting Algorithms
 
 * **Bubble Sort**
-  Simple comparison-based sorting algorithm.
+  Simple comparison-based sorting.
 
 * **Selection Sort**
-  Selects the minimum element and places it in correct position.
+  Selects minimum element and places it correctly.
 
 * **Insertion Sort**
-  Builds sorted array one element at a time.
+  Builds sorted array incrementally.
 
 * **Merge Sort**
-  Divide and conquer sorting algorithm.
+  Divide and conquer sorting technique.
 
 * **Quick Sort**
-  Efficient sorting algorithm with step counting implementation.
+  Efficient sorting with step counting implementation.
 
 ---
 
@@ -49,24 +49,51 @@ This repository contains implementations of fundamental **Data Structures and Al
 
 ---
 
-### 🎒 Greedy Algorithm
+### 🎒 Greedy Algorithms
 
 * **Fractional Knapsack Problem**
 
-  * Implemented using Greedy approach
-  * Selects items based on highest value/weight ratio
-  * Supports fractional selection of items
+  * Uses value/weight ratio
+  * Allows fractional selection
+
+* **Dijkstra’s Algorithm**
+
+  * Shortest path using greedy approach
+  * Works with non-negative weights
+
+---
+
+### 📊 Dynamic Programming Algorithms
+
+* **0/1 Knapsack Problem**
+
+  * No fractional selection
+  * Maximizes value under constraints
+
+* **Longest Common Subsequence (LCS)**
+
+  * Finds longest common sequence between two strings
+
+* **Matrix Chain Multiplication**
+
+  * Optimizes matrix multiplication order
+
+* **Bellman-Ford Algorithm**
+
+  * Shortest path algorithm
+  * Handles negative weights
+  * Detects negative cycles
 
 ---
 
 ## 🚀 Features
 
-* Clean and simple implementations
-* Covers both **basic and advanced concepts**
-* Includes **iterative and recursive approaches**
+* Clean and beginner-friendly implementations
+* Covers **Greedy, Sorting, Searching, and Dynamic Programming**
+* Includes both **iterative and recursive approaches**
 * Useful for:
 
-  * 📚 Academic learning
+  * 📚 Academic exams
   * 💼 Placement preparation
   * 🧠 DSA practice
 
@@ -86,16 +113,24 @@ This repository contains implementations of fundamental **Data Structures and Al
    ```
    git clone <your-repo-link>
    ```
-2. Open in your preferred IDE (VS Code / IntelliJ / Eclipse)
-3. Run individual programs to understand logic
+2. Open in IDE (VS Code / IntelliJ / Eclipse)
+3. Run individual files to understand logic
 
 ---
 
 ## 🎯 Goal
 
-To build a strong foundation in **Data Structures and Algorithms** and prepare for coding interviews and technical assessments.
+To build a strong foundation in **Data Structures and Algorithms** and prepare for:
 
+* Coding interviews
+* Technical assessments
+* Competitive programming
 
+---
+
+## 📄 License
+
+This project is open-source and intended for educational purposes.
 
 ---
 
