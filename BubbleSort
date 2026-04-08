@@ -5,7 +5,7 @@ public class BubbleSort {
 
         bubbleSort(arr); 
 
-    } 
+    }  
 
     public static void bubbleSort(int[] arr) { 
 
