@@ -102,7 +102,7 @@ This repository contains implementations of fundamental **Data Structures and Al
 ## 🛠️ Technologies Used
 
 * Java
-* C++
+
 
 ---
 
