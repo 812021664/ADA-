@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+ 
 public class Dijkstra {
 
     static int minDistance(int[] dist, boolean[] visited, int V) {
